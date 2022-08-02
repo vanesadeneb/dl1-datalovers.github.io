@@ -1,0 +1,126 @@
+body {
+  margin: 0px;
+  background-image: url("image.png");
+  font-family: "Baloo Paaji 2", cursive;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  height: 10rem;
+}
+
+#logo {
+  width: auto;
+  height: 12rem;
+  text-align: center;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+figure {
+  display: flex;
+  flex-direction: column;
+  height: 20rem;
+  width: 18rem;
+  margin: 0px;
+  background-color: white;
+  color: black;
+  border-radius: 1.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+figure img {
+  width: 15rem;
+  border-radius: 6px;
+  height: 14rem;
+}
+
+figcaption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 57px;
+}
+
+.character-name {
+  color: rgba(0, 53, 102, 1);
+  margin: 0px;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.status {
+  height: 3px;
+  width: 3px;
+  margin: 15px 6px 0px 0px;
+  border: solid;
+  border-radius: 20px;
+}
+
+.information {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  transition: 0.5s;
+}
+
+aside {
+  color: white;
+}
+
+#infoCharacter {
+  gap: 5rem;
+}
+
+/*figure:hover img,
+figure:hover .character-name {
+  transform: translateY(-20px);
+}*/
+
+/*figure .information {
+  list-style: none;
+  margin: 0 10px;
+  transform: translateY(-10px);
+  transition: 0.5s;
+  opacity: 0;
+}*/
+
+/*figure:hover .information {
+  transform: translateY(-20px);
+  opacity: 1;
+}*/
+
+.information {
+  font-size: 1.3em;
+}
+
+figure:hover {
+  box-shadow: 0px 0px 10px 10px rgba(127, 250, 103, 0.51);
+  height: 25rem;
+}
+
+main figure:hover .information {
+  margin-top: 30px;
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0.2s;
+}
+
+main figure .information {
+  position: relative;
+  top: -51px;
+  padding: 10px 15px;
+  color: #111;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
