@@ -12,15 +12,54 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/a8666cfa76.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div id="root">
       <header>
         <img src="logo.png" alt="Rick and Morty" id="logo" />
       </header>
-      <main></main>
+      <nav>
+        <div id="filter-container">
+          <button id="inicio">All Characters</button>
+          <select class="categorie" name="status" id="status">
+            <option value="">Status</option>
+            <option value="alive">Alive</option>
+            <option value="dead">Dead</option>
+            <option value="unknown">unknown</option>
+          </select>
+          <select class="categorie" name="specie" id="specie">
+            <option value="">Specie</option>
+            <option value="alien">Alien</option>
+            <option value="animal">Animal</option>
+            <option value="cronenberg">Cronenberg</option>
+            <option value="disease">Disease</option>
+            <option value="human">Human</option>
+            <option value="humanoid">Humanoid</option>
+            <option value="mytholog">Mytholog</option>
+            <option value="parasite">Parasite</option>
+            <option value="poopybutthole">Poopybutthole</option>
+            <option value="robot">Robot</option>
+            <option value="vampire">Vampire</option>
+            <option value="unknown">unknown</option>
+          </select>
+          <select class="categorie" name="gender" id="gender">
+            <option value="">Gender</option>
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+            <option value="genderless">Genderless</option>
+            <option value="unknown">unknown</option>
+          </select>
+        </div>
+      </nav>
+      <p id="number-of-results"></p>
+      <main>
+      </main>
     </div>
+    <footer></footer>
     <script src="main.js" type="module"></script>
-    <h1>hola</h1>
   </body>
 </html>
