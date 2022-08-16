@@ -1,62 +1,10 @@
-import { filterData } from "./data.js";
+import { filterData, sortData } from "./data.js";
 // import data from './data/lol/lol.js';
 //import data from './data/pokemon/pokemon.js';
 import data from "./data/rickandmorty/rickandmorty.js";
-console.log(data);
+//console.log(data);
 
-//Esto sucede al cargar por primera vez la pagina
 showAllCards();
-
-const allCharacters = document.getElementById("inicio");
-allCharacters.addEventListener("click", () => {
-  document.getElementById("number-of-results").innerHTML = "";
-  removeCards();
-  showAllCards();
-});
-
-const select = document.getElementById("gender");
-select.addEventListener("change", () => {
-  const value = select.options[select.selectedIndex].text;
-  const numberOfresults = genderFilter(value);
-  selectSpecie.selectedIndex = "0";
-  selectStatus.selectedIndex = "0";
-  document.getElementById("number-of-results").innerHTML =
-  value + " (<span id='number-results'>" + numberOfresults + "</span>)";
-  if(value === "Gender"){
-    document.getElementById("number-of-results").innerHTML = "";
-    showAllCards();
-  }
-});
-
-const selectSpecie = document.getElementById("specie");
-selectSpecie.addEventListener("change", () => {
-  const value = selectSpecie.options[selectSpecie.selectedIndex].text;
-  console.log("specie value: " + value);
-  const numberOfresults = specieFilter(value);
-  document.getElementById("number-of-results").innerHTML =
-    value + " (<span id='number-results'>" + numberOfresults + "</span>)";
-  select.selectedIndex = "0";
-  selectStatus.selectedIndex = "0";
-  if(value === "Specie"){
-    document.getElementById("number-of-results").innerHTML = "";
-    showAllCards();
-  }
-});
-
-const selectStatus = document.getElementById("status");
-selectStatus.addEventListener("change", () => {
-  const value = selectStatus.options[selectStatus.selectedIndex].text;
-  document.querySelector("main");
-  const numberOfresults = statusFilter(value);
-  document.getElementById("number-of-results").innerHTML =
-    value + " (<span id='number-results'>" + numberOfresults + "</span>)";
-  select.selectedIndex = "0";
-  selectSpecie.selectedIndex = "0";
-  if(value === "Status"){
-    document.getElementById("number-of-results").innerHTML = "";
-    showAllCards();
-  }
-});
 
 function createCard(element) {
   let figure = document.createElement("figure");
@@ -109,38 +57,104 @@ function removeCards() {
   }
 }
 
-function withoutResult(categorie){
-  
-}
+const allCharacters = document.getElementById("inicio");
+allCharacters.addEventListener("click", () => {
+  document.getElementById("number-of-results").innerHTML = "";
+  removeCards();
+  showAllCards();
+});
 
+const select = document.getElementById("gender");
+select.addEventListener("change", () => {
+  let value = select.options[select.selectedIndex].text;
+  const numberOfresults = genderFilter(value);
+  selectSpecie.selectedIndex = "0";
+  selectStatus.selectedIndex = "0";
+  document.getElementById("number-of-results").innerHTML =
+  value + " (<span id='number-results'>" + numberOfresults + "</span>)";
+  if(value === "Gender"){
+    document.getElementById("number-of-results").innerHTML = "";
+    showAllCards();
+  }
+});
+
+const selectSpecie = document.getElementById("specie");
+selectSpecie.addEventListener("change", () => {
+  let value = selectSpecie.options[selectSpecie.selectedIndex].text;
+  //console.log("specie value: " + value);
+  const numberOfresults = specieFilter(value);
+  document.getElementById("number-of-results").innerHTML =
+    value + " (<span id='number-results'>" + numberOfresults + "</span>)";
+  select.selectedIndex = "0";
+  selectStatus.selectedIndex = "0";
+  if(value === "Specie"){
+    document.getElementById("number-of-results").innerHTML = "";
+    showAllCards();
+  }
+});
+
+const selectStatus = document.getElementById("status");
+selectStatus.addEventListener("change", () => {
+  let value = selectStatus.options[selectStatus.selectedIndex].text;
+  document.querySelector("main");
+  const numberOfresults = statusFilter(value);
+  document.getElementById("number-of-results").innerHTML =
+    value + " (<span id='number-results'>" + numberOfresults + "</span>)";
+  select.selectedIndex = "0";
+  selectSpecie.selectedIndex = "0";
+  if(value === "Status"){
+    document.getElementById("number-of-results").innerHTML = "";
+    showAllCards();
+  }
+});
+
+/* filteredCharacters have all the filtered data by name, specie or status. If the data is not filtered 
+   takes data.results by default to show all de characters sort by a_z or z_a
+*/
+let filteredCharacters = data.results;  
+                                        
 function genderFilter(gender) {
   removeCards();
-  let genders = filterData(data.results, (element) => {
-    if (element.gender === gender) {
-      return true;
-    }
+  filteredCharacters = filterData(data.results, (element) => {
+    return element.gender === gender;
   });
-  return genders.map(createCard).length;
+  return filteredCharacters.map(createCard).length;
 }
 
 function specieFilter(specie) {
   removeCards();
-  let species = filterData(data.results, (element) => {
-    if (element.species === specie) {
-      return true;
-    }
+  filteredCharacters= filterData(data.results, (element) => {
+    return element.species === specie;
   });
-  return species.map(createCard).length;
+  return filteredCharacters.map(createCard).length;
 }
 
 function statusFilter(status) {
   removeCards();
-  let typeOfStatus = filterData(data.results, (element) => {
-    if (element.status === status) {
-      console.log("element: " + element.status);
-      return true;
-    }
+  filteredCharacters = filterData(data.results, (element) => {
+    return element.status === status;
   });
 
-  return typeOfStatus.map(createCard).length;
+  return filteredCharacters.map(createCard).length;
 }
+
+document.getElementById("sort").addEventListener("click", ()=>{
+  const sortButton = document.getElementById("sort").value;
+  if(sortButton == "a_z"){
+    const sortAZ = sortData(filteredCharacters, "a_z");
+    document.getElementById("sort").value = "z_a";
+    document.getElementById("sort").removeChild(document.getElementById("sort").firstChild);
+    document.getElementById("sort").innerHTML = "<i class='fa-light fa-arrow-down-z-a'></i>";
+    removeCards();
+    sortAZ.map(createCard);
+
+  }else{
+    const sortZA = sortData(filteredCharacters, "z_a");
+    document.getElementById("sort").value = "a_z";
+    document.getElementById("sort").removeChild(document.getElementById("sort").firstChild);
+    document.getElementById("sort").innerHTML = "<i class='fa-light fa-arrow-up-a-z'></i>";
+    removeCards();
+    sortZA.map(createCard);
+  }
+});
+

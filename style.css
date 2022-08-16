@@ -69,6 +69,7 @@ figcaption {
   margin: 15px 6px 0px 0px;
   border: solid;
   border-radius: 20px;
+  font-size: x-large;
 }
 
 .information {
@@ -85,24 +86,6 @@ aside {
 #infoCharacter {
   gap: 5rem;
 }
-
-/*figure:hover img,
-figure:hover .character-name {
-  transform: translateY(-20px);
-}*/
-
-/*figure .information {
-  list-style: none;
-  margin: 0 10px;
-  transform: translateY(-10px);
-  transition: 0.5s;
-  opacity: 0;
-}*/
-
-/*figure:hover .information {
-  transform: translateY(-20px);
-  opacity: 1;
-}*/
 
 .information {
   font-size: 1.3em;
@@ -150,7 +133,8 @@ nav {
 }
 
 .categorie,
-#inicio {
+#inicio,
+#sort {
   width: 18rem;
   height: 2.5rem;
   border-radius: 8px;
@@ -167,11 +151,23 @@ nav {
   box-shadow: 0px 0px 10px 10px rgba(127, 250, 103, 0.51);
 }
 
-#inicio {
+#inicio,
+#sort {
   color: white;
   background-color: rgba(37, 183, 9, 1);
 }
 
+#sort {
+  width: 6rem;
+}
+#sort:hover {
+  box-shadow: 0px 0px 10px 10px rgba(127, 250, 103, 0.51);
+}
+@media only screen and (max-width: 576px) {
+  .categorie {
+    width: 7rem;
+  }
+}
 #number-of-results {
   color: white;
   font-size: 2em;
