@@ -74,6 +74,7 @@ figcaption {
 
 .information {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   justify-items: center;
   transition: 0.5s;
